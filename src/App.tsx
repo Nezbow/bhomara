@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -13,18 +14,20 @@ function App() {
           <a href="#solutions">Solutions</a>
           <a href="#about">About</a>
           <a href="#marketplace">Marketplace</a>
-          <a href="#contact">Contact</a>
+          <Link to="/contact">Contact</Link>
         </nav>
 
-        <a className="demo-button" href="#contact">
+        <Link className="demo-button" to="/contact">
           Request a Demo
-        </a>
+        </Link>
       </header>
 
       <main>
         <section className="hero" id="home">
           <div className="hero-content">
-            <p className="eyebrow">PRACTICAL INTELLIGENCE. REAL-WORLD IMPACT.</p>
+            <p className="eyebrow">
+              PRACTICAL INTELLIGENCE. REAL-WORLD IMPACT.
+            </p>
 
             <h1>
               Intelligence that
@@ -42,9 +45,9 @@ function App() {
                 Explore Our Products
               </a>
 
-              <a className="secondary-button" href="#contact">
+              <Link className="secondary-button" to="/contact">
                 Request a Demo
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -79,7 +82,10 @@ function App() {
                 AI-assisted productivity and automation for projects,
                 documents, communications and business workflows.
               </p>
-              <a href="#contact">Discover VARA AI →</a>
+
+              <Link to="/products/vara-ai">
+                Discover VARA AI →
+              </Link>
             </article>
 
             <article className="product-card">
@@ -90,7 +96,10 @@ function App() {
                 Intelligent marketing and promotional technology designed to
                 help independent artists build, launch and grow.
               </p>
-              <a href="#contact">Discover NEZBOW AI →</a>
+
+              <Link to="/contact">
+                Discover NEZBOW AI →
+              </Link>
             </article>
 
             <article className="product-card">
@@ -101,7 +110,10 @@ function App() {
                 A new intelligence platform for discovering opportunities in
                 video, audience behaviour and high-performing digital content.
               </p>
-              <span className="coming-soon">IN DEVELOPMENT</span>
+
+              <span className="coming-soon">
+                IN DEVELOPMENT
+              </span>
             </article>
           </div>
         </section>
@@ -144,10 +156,12 @@ function App() {
 
         <section className="about-section" id="about">
           <p className="eyebrow">ABOUT BHOMARA</p>
+
           <h2>
             We are building technology around a simple idea:
             <span> intelligence should be useful.</span>
           </h2>
+
           <p>
             Our products are designed around practical problems and measurable
             outcomes. From organisational workflows to creator growth, BHOMARA
@@ -167,20 +181,24 @@ function App() {
             </p>
           </div>
 
-          <span className="marketplace-status">COMING SOON</span>
+          <span className="marketplace-status">
+            COMING SOON
+          </span>
         </section>
 
         <section className="contact-section" id="contact">
           <p className="eyebrow">WORK WITH BHOMARA</p>
+
           <h2>Have a process that should work better?</h2>
+
           <p>
             Talk to us about your organisation, workflow or opportunity and
             discover where practical AI could make a difference.
           </p>
 
-          <a className="primary-button" href="mailto:hello@bhomara.com">
+          <Link className="primary-button" to="/contact">
             Request a Demo
-          </a>
+          </Link>
         </section>
       </main>
 
@@ -189,13 +207,15 @@ function App() {
           BHOMARA
         </a>
 
-        <p>Practical intelligence for the way people work and create.</p>
+        <p>
+          Practical intelligence for the way people work and create.
+        </p>
 
         <div className="footer-links">
           <a href="#products">Products</a>
           <a href="#solutions">Solutions</a>
           <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <Link to="/contact">Contact</Link>
         </div>
 
         <p className="copyright">
