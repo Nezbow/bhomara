@@ -97,7 +97,7 @@ function App() {
                 help independent artists build, launch and grow.
               </p>
 
-              <Link to="/contact">
+              <Link to="/products/nezbow-ai">
                 Discover NEZBOW AI →
               </Link>
             </article>
@@ -216,6 +216,8 @@ function App() {
           <a href="#solutions">Solutions</a>
           <a href="#about">About</a>
           <Link to="/contact">Contact</Link>
+          <Link to="/privacy">Privacy</Link>
+          <Link to="/terms">Terms</Link>
         </div>
 
         <p className="copyright">

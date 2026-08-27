@@ -1,0 +1,711 @@
+.nezbow-page {
+  min-height: 100vh;
+  background: #f8f6fb;
+  color: #241c32;
+}
+
+.nezbow-header {
+  width: min(1400px, calc(100% - 64px));
+  height: 88px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.nezbow-parent-brand {
+  color: #241c32;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+}
+
+.nezbow-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nezbow-nav a,
+.nezbow-back-link {
+  color: #6d6577;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.nezbow-nav a:hover,
+.nezbow-back-link:hover {
+  color: #7c45b8;
+}
+
+.nezbow-hero {
+  width: min(1400px, calc(100% - 64px));
+  min-height: 720px;
+  margin: 0 auto;
+  padding: 70px 0 100px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(500px, 1.05fr);
+  align-items: center;
+  gap: 75px;
+}
+
+.nezbow-kicker {
+  margin: 0 0 18px;
+  color: #8148bd;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.19em;
+}
+
+.nezbow-product-name {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 28px;
+  color: #352641;
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.nezbow-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6e3ea6, #a555b7);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.nezbow-hero h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(3.6rem, 5.7vw, 6.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+}
+
+.nezbow-hero h1 span {
+  display: block;
+  color: #874bb4;
+}
+
+.nezbow-lead {
+  max-width: 660px;
+  margin: 30px 0 0;
+  color: #706779;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.nezbow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.nezbow-primary-button,
+.nezbow-secondary-button {
+  min-height: 50px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.nezbow-primary-button {
+  background: #7542aa;
+  color: #ffffff;
+  box-shadow: 0 14px 35px rgba(117, 66, 170, 0.22);
+}
+
+.nezbow-primary-button:hover {
+  transform: translateY(-2px);
+  background: #653594;
+}
+
+.nezbow-secondary-button {
+  border: 1px solid rgba(73, 48, 91, 0.18);
+  background: #ffffff;
+  color: #392b45;
+}
+
+.nezbow-secondary-button:hover {
+  transform: translateY(-2px);
+}
+
+.nezbow-campaign-preview {
+  overflow: hidden;
+  border: 1px solid rgba(101, 62, 135, 0.12);
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 35px 90px rgba(65, 43, 80, 0.15);
+}
+
+.nezbow-preview-topbar {
+  min-height: 78px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee9f1;
+}
+
+.nezbow-preview-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.nezbow-preview-logo {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #6e3ea6, #a555b7);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.nezbow-preview-brand div {
+  display: flex;
+  flex-direction: column;
+}
+
+.nezbow-preview-brand strong {
+  font-size: 0.8rem;
+}
+
+.nezbow-preview-brand small {
+  margin-top: 2px;
+  color: #9a90a2;
+  font-size: 0.62rem;
+}
+
+.nezbow-preview-status {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f2eafa;
+  color: #7440a8;
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+}
+
+.nezbow-preview-body {
+  min-height: 430px;
+  display: grid;
+  grid-template-columns: 145px 1fr;
+}
+
+.nezbow-preview-sidebar {
+  padding: 27px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  border-right: 1px solid #eeeaf1;
+  background: #faf8fc;
+}
+
+.nezbow-preview-sidebar span {
+  padding: 10px 11px;
+  border-radius: 9px;
+  color: #8b8193;
+  font-size: 0.67rem;
+  font-weight: 650;
+}
+
+.nezbow-preview-sidebar .active {
+  background: #f0e7f8;
+  color: #7542aa;
+}
+
+.nezbow-preview-workspace {
+  padding: 28px;
+  background: #fcfbfd;
+}
+
+.nezbow-preview-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nezbow-preview-heading small {
+  color: #a59cab;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.nezbow-preview-heading h3 {
+  margin: 6px 0 0;
+  color: #35283e;
+  font-size: 1.25rem;
+}
+
+.nezbow-preview-heading > span {
+  height: fit-content;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #7542aa;
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 750;
+}
+
+.nezbow-preview-cards {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.nezbow-preview-cards > div {
+  min-height: 118px;
+  padding: 17px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eeeaf1;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.nezbow-preview-cards small {
+  color: #9e94a5;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.nezbow-preview-cards strong {
+  margin-top: 13px;
+  color: #392b45;
+  font-size: 1.5rem;
+}
+
+.nezbow-preview-cards span {
+  margin-top: auto;
+  color: #958b9d;
+  font-size: 0.58rem;
+}
+
+.nezbow-preview-activity {
+  margin-top: 14px;
+  padding: 18px;
+  border: 1px solid #eeeaf1;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.nezbow-activity-title {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.66rem;
+}
+
+.nezbow-activity-title span {
+  color: #a59cab;
+}
+
+.nezbow-activity-row {
+  padding: 11px 0;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-top: 1px solid #f2eff4;
+}
+
+.nezbow-activity-icon {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: #f2eafa;
+  color: #7440a8;
+  font-size: 0.55rem;
+  font-weight: 850;
+}
+
+.nezbow-activity-row div {
+  display: flex;
+  flex-direction: column;
+}
+
+.nezbow-activity-row strong {
+  color: #493b52;
+  font-size: 0.65rem;
+}
+
+.nezbow-activity-row small {
+  margin-top: 3px;
+  color: #a59cab;
+  font-size: 0.55rem;
+}
+
+.nezbow-problem-section,
+.nezbow-capabilities-section,
+.nezbow-built-section,
+.nezbow-demo-section {
+  width: min(1400px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.nezbow-problem-section {
+  padding: 130px 0;
+  border-top: 1px solid rgba(91, 56, 112, 0.1);
+}
+
+.nezbow-problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 100px;
+}
+
+.nezbow-problem-grid h2,
+.nezbow-section-heading h2,
+.nezbow-demo-section h2 {
+  margin: 0;
+  color: #2e2238;
+  font-size: clamp(2.5rem, 4.2vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.nezbow-problem-grid > div {
+  padding-top: 5px;
+}
+
+.nezbow-problem-grid p {
+  margin: 0 0 20px;
+  color: #746a7b;
+  font-size: 1.03rem;
+  line-height: 1.85;
+}
+
+.nezbow-capabilities-section {
+  padding: 30px 0 130px;
+}
+
+.nezbow-section-heading {
+  max-width: 850px;
+  margin-bottom: 55px;
+}
+
+.nezbow-capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.nezbow-capability-grid article {
+  min-height: 280px;
+  padding: 30px;
+  border: 1px solid rgba(91, 56, 112, 0.1);
+  border-radius: 22px;
+  background: #ffffff;
+}
+
+.nezbow-capability-grid article > span {
+  color: #7a45ae;
+  font-size: 0.7rem;
+  font-weight: 850;
+}
+
+.nezbow-capability-grid h3 {
+  margin: 70px 0 14px;
+  color: #392b45;
+  font-size: 1.45rem;
+}
+
+.nezbow-capability-grid p {
+  margin: 0;
+  color: #766c7d;
+  line-height: 1.7;
+}
+
+.nezbow-workflow-section {
+  padding: 125px max(32px, calc((100vw - 1400px) / 2));
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(157, 76, 184, 0.2),
+      transparent 35%
+    ),
+    #24192e;
+}
+
+.nezbow-light-heading h2 {
+  color: #ffffff;
+}
+
+.nezbow-light-heading .nezbow-kicker {
+  color: #c999e1;
+}
+
+.nezbow-workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.nezbow-workflow-grid article {
+  min-height: 320px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.nezbow-workflow-grid article > span {
+  color: #c895e1;
+  font-size: 0.7rem;
+  font-weight: 850;
+}
+
+.nezbow-workflow-grid h3 {
+  margin: 100px 0 14px;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.nezbow-workflow-grid p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.64);
+  line-height: 1.72;
+}
+
+.nezbow-built-section {
+  padding: 130px 0;
+}
+
+.nezbow-built-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.nezbow-built-grid > div {
+  padding-top: 24px;
+  border-top: 1px solid rgba(91, 56, 112, 0.16);
+}
+
+.nezbow-built-grid span {
+  color: #7a45ae;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+}
+
+.nezbow-built-grid h3 {
+  margin: 45px 0 13px;
+  color: #392b45;
+  font-size: 1.5rem;
+}
+
+.nezbow-built-grid p {
+  margin: 0;
+  color: #756b7c;
+  line-height: 1.75;
+}
+
+.nezbow-demo-section {
+  margin-bottom: 120px;
+  padding: 90px 60px;
+  text-align: center;
+  border-radius: 34px;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(170, 83, 190, 0.34),
+      transparent 48%
+    ),
+    #24192e;
+}
+
+.nezbow-demo-section .nezbow-kicker {
+  color: #ce9fe5;
+}
+
+.nezbow-demo-section h2 {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+.nezbow-demo-section > p:not(.nezbow-kicker) {
+  max-width: 720px;
+  margin: 26px auto 35px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+.nezbow-footer {
+  padding: 50px max(32px, calc((100vw - 1400px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  border-top: 1px solid rgba(91, 56, 112, 0.1);
+  background: #ffffff;
+}
+
+.nezbow-footer > div p {
+  margin: 10px 0 0;
+  color: #84798a;
+  font-size: 0.85rem;
+}
+
+.nezbow-footer > a {
+  color: #7542aa;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+@media (max-width: 1100px) {
+  .nezbow-nav {
+    display: none;
+  }
+
+  .nezbow-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .nezbow-campaign-preview {
+    max-width: 760px;
+  }
+
+  .nezbow-problem-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .nezbow-capability-grid,
+  .nezbow-built-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nezbow-workflow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nezbow-capability-grid article {
+    min-height: 230px;
+  }
+
+  .nezbow-capability-grid h3 {
+    margin-top: 45px;
+  }
+}
+
+@media (max-width: 700px) {
+  .nezbow-header,
+  .nezbow-hero,
+  .nezbow-problem-section,
+  .nezbow-capabilities-section,
+  .nezbow-built-section,
+  .nezbow-demo-section {
+    width: min(100% - 32px, 1400px);
+  }
+
+  .nezbow-header {
+    height: 76px;
+  }
+
+  .nezbow-parent-brand {
+    font-size: 1rem;
+  }
+
+  .nezbow-back-link {
+    font-size: 0.75rem;
+  }
+
+  .nezbow-hero {
+    min-height: auto;
+    padding: 60px 0 80px;
+    gap: 55px;
+  }
+
+  .nezbow-hero h1 {
+    font-size: clamp(3.2rem, 15vw, 5rem);
+  }
+
+  .nezbow-actions {
+    flex-direction: column;
+  }
+
+  .nezbow-actions a {
+    width: 100%;
+  }
+
+  .nezbow-preview-body {
+    grid-template-columns: 1fr;
+  }
+
+  .nezbow-preview-sidebar {
+    display: none;
+  }
+
+  .nezbow-preview-workspace {
+    padding: 20px;
+  }
+
+  .nezbow-preview-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .nezbow-problem-section,
+  .nezbow-built-section {
+    padding: 90px 0;
+  }
+
+  .nezbow-capabilities-section {
+    padding-bottom: 90px;
+  }
+
+  .nezbow-workflow-section {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .nezbow-workflow-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nezbow-workflow-grid article {
+    min-height: 250px;
+  }
+
+  .nezbow-workflow-grid h3 {
+    margin-top: 55px;
+  }
+
+  .nezbow-demo-section {
+    margin-bottom: 80px;
+    padding: 65px 24px;
+  }
+
+  .nezbow-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
