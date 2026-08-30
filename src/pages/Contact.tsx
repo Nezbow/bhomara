@@ -1,198 +1,385 @@
-import { FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import "./Contact.css";
 
-type FormStatus = "idle" | "submitted";
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        container: HTMLElement,
+        options: {
+          sitekey: string;
+          callback: (token: string) => void;
+          "expired-callback": () => void;
+          "error-callback": () => void;
+          theme?: "light" | "dark" | "auto";
+        },
+      ) => string;
+      reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
+    };
+  }
+}
+
+interface EnquiryResponse {
+  ok?: boolean;
+  message?: string;
+  error?: string;
+}
+
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY;
 
 export default function Contact() {
-  const [status, setStatus] = useState<FormStatus>("idle");
+  const [submitted, setSubmitted] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
+  const turnstileWidgetIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) {
+      setSubmitError(
+        "Security verification is unavailable. Please try again later.",
+      );
+      return;
+    }
+
+    const renderTurnstile = () => {
+      if (
+        !window.turnstile ||
+        !turnstileContainerRef.current ||
+        turnstileWidgetIdRef.current
+      ) {
+        return;
+      }
+
+      turnstileWidgetIdRef.current = window.turnstile.render(
+        turnstileContainerRef.current,
+        {
+          sitekey: TURNSTILE_SITE_KEY,
+          theme: "light",
+          callback: (token: string) => {
+            setTurnstileToken(token);
+            setSubmitError("");
+          },
+          "expired-callback": () => {
+            setTurnstileToken("");
+          },
+          "error-callback": () => {
+            setTurnstileToken("");
+            setSubmitError(
+              "Security verification could not be completed. Please try again.",
+            );
+          },
+        },
+      );
+    };
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      'script[src^="https://challenges.cloudflare.com/turnstile/v0/api.js"]',
+    );
+
+    if (existingScript) {
+      if (window.turnstile) {
+        renderTurnstile();
+      } else {
+        existingScript.addEventListener("load", renderTurnstile, {
+          once: true,
+        });
+      }
+    } else {
+      const script = document.createElement("script");
+
+      script.src =
+        "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      script.defer = true;
+      script.addEventListener("load", renderTurnstile, { once: true });
+
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      if (turnstileWidgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(turnstileWidgetIdRef.current);
+        turnstileWidgetIdRef.current = null;
+      }
+    };
+  }, []);
+
+  const resetTurnstile = () => {
+    setTurnstileToken("");
+
+    if (window.turnstile && turnstileWidgetIdRef.current) {
+      window.turnstile.reset(turnstileWidgetIdRef.current);
+    }
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setStatus("submitted");
-  }
+
+    if (isSubmitting) {
+      return;
+    }
+
+    if (!turnstileToken) {
+      setSubmitError(
+        "Please complete the security verification before submitting.",
+      );
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    const payload = {
+      firstName: String(formData.get("firstName") ?? "").trim(),
+      lastName: String(formData.get("lastName") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      organisation: String(formData.get("organisation") ?? "").trim(),
+      product: String(formData.get("product") ?? "").trim(),
+      challenge: String(formData.get("challenge") ?? "").trim(),
+      consent: formData.get("consent") === "on",
+      turnstileToken,
+    };
+
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      let result: EnquiryResponse = {};
+
+      try {
+        result = (await response.json()) as EnquiryResponse;
+      } catch {
+        result = {};
+      }
+
+      if (!response.ok || result.ok !== true) {
+        throw new Error(
+          result.error ||
+            "We could not send your enquiry right now. Please try again.",
+        );
+      }
+
+      form.reset();
+      setSubmitted(true);
+      resetTurnstile();
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "We could not send your enquiry right now. Please try again.";
+
+      setSubmitError(message);
+      resetTurnstile();
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <div className="contact-page">
-      <header className="contact-header">
-        <Link className="contact-brand" to="/">
-          BHOMARA
-        </Link>
+    <main className="contact-page">
+      <section className="contact-hero">
+        <div className="contact-shell">
+          <p className="contact-eyebrow">CONTACT BHOMARA</p>
 
-        <Link className="contact-home-link" to="/">
-          BHOMARA Home
-        </Link>
-      </header>
+          <h1>
+            Tell us what you need
+            <span> to improve.</span>
+          </h1>
 
-      <main>
-        <section className="contact-hero">
-          <div className="contact-intro">
-            <p className="contact-kicker">START A CONVERSATION</p>
+          <p className="contact-intro">
+            Whether you are exploring VARA AI, NEZBOW AI, our upcoming
+            Video Intelligence platform, or a bespoke AI solution, tell us
+            about the challenge you are trying to solve.
+          </p>
+        </div>
+      </section>
 
-            <h1>
-              Tell us what should
-              <span> work better.</span>
-            </h1>
+      <section className="contact-content">
+        <div className="contact-shell contact-grid">
+          <div className="contact-copy">
+            <p className="contact-section-label">START A CONVERSATION</p>
 
-            <p className="contact-lead">
-              Whether you are exploring VARA AI, interested in another BHOMARA
-              product, or have a workflow that could benefit from practical AI,
-              tell us what you are trying to improve.
+            <h2>Request a demo or discuss your workflow.</h2>
+
+            <p>
+              Share a little about your organisation and the problem you
+              want to solve. We will review your enquiry and respond with
+              the most relevant next step.
             </p>
 
-            <div className="contact-points">
-              <div>
-                <span>01</span>
-                <p>Tell us about your organisation and the challenge.</p>
-              </div>
-
-              <div>
-                <span>02</span>
-                <p>We review where practical AI or automation could help.</p>
-              </div>
-
-              <div>
-                <span>03</span>
-                <p>Where appropriate, we arrange a conversation or demo.</p>
-              </div>
+            <div className="contact-detail">
+              <span>Email</span>
+              <a href="mailto:hello@bhomara.com">
+                hello@bhomara.com
+              </a>
             </div>
           </div>
 
-          <div className="contact-form-panel">
-            {status === "submitted" ? (
+          <div className="contact-form-card">
+            {submitted ? (
               <div className="contact-success">
-                <span className="success-mark">✓</span>
+                <p className="contact-section-label">REQUEST RECEIVED</p>
 
-                <p className="contact-kicker">REQUEST RECEIVED</p>
-
-                <h2>Thank you for getting in touch.</h2>
+                <h2>Thank you for contacting BHOMARA.</h2>
 
                 <p>
-                  Your form has passed the website interface successfully.
-                  Online delivery will be activated when BHOMARA's production
-                  enquiry service is connected.
+                  Your enquiry has been received successfully. We will
+                  review the information you provided and respond as soon
+                  as possible.
                 </p>
 
-                <button type="button" onClick={() => setStatus("idle")}>
-                  Send Another Request
+                <button
+                  type="button"
+                  className="contact-submit"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setSubmitError("");
+                  }}
+                >
+                  Send another enquiry
                 </button>
               </div>
             ) : (
-              <>
-                <div className="form-heading">
-                  <p className="contact-kicker">REQUEST A DEMO</p>
-                  <h2>How can BHOMARA help?</h2>
-                  <p>
-                    Give us a little context and we'll know where to start.
-                  </p>
-                </div>
-
-                <form className="demo-form" onSubmit={handleSubmit}>
-                  <div className="form-row">
-                    <label>
-                      First name
-                      <input
-                        type="text"
-                        name="firstName"
-                        autoComplete="given-name"
-                        required
-                      />
-                    </label>
-
-                    <label>
-                      Last name
-                      <input
-                        type="text"
-                        name="lastName"
-                        autoComplete="family-name"
-                        required
-                      />
-                    </label>
+              <form onSubmit={handleSubmit}>
+                <div className="contact-form-row">
+                  <div className="contact-field">
+                    <label htmlFor="firstName">First name</label>
+                    <input
+                      id="firstName"
+                      name="firstName"
+                      type="text"
+                      autoComplete="given-name"
+                      required
+                    />
                   </div>
 
-                  <label>
-                    Work email
+                  <div className="contact-field">
+                    <label htmlFor="lastName">Last name</label>
                     <input
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      placeholder="you@organisation.com"
-                      required
-                    />
-                  </label>
-
-                  <label>
-                    Organisation
-                    <input
+                      id="lastName"
+                      name="lastName"
                       type="text"
-                      name="organisation"
-                      autoComplete="organization"
+                      autoComplete="family-name"
                       required
                     />
+                  </div>
+                </div>
+
+                <div className="contact-field">
+                  <label htmlFor="email">Work email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                  />
+                </div>
+
+                <div className="contact-field">
+                  <label htmlFor="organisation">
+                    Organisation
                   </label>
+                  <input
+                    id="organisation"
+                    name="organisation"
+                    type="text"
+                    autoComplete="organization"
+                    required
+                  />
+                </div>
 
-                  <label>
-                    I'm interested in
-                    <select name="product" defaultValue="" required>
-                      <option value="" disabled>
-                        Select a product or service
-                      </option>
-                      <option value="vara-ai">VARA AI</option>
-                      <option value="nezbow-ai">NEZBOW AI</option>
-                      <option value="video-intelligence">
-                        Video Intelligence
-                      </option>
-                      <option value="bhomara">
-                        BHOMARA / General Enquiry
-                      </option>
-                    </select>
+                <div className="contact-field">
+                  <label htmlFor="product">
+                    Product or service
                   </label>
+                  <select
+                    id="product"
+                    name="product"
+                    defaultValue=""
+                    required
+                  >
+                    <option value="" disabled>
+                      Select an option
+                    </option>
+                    <option value="vara-ai">VARA AI</option>
+                    <option value="nezbow-ai">NEZBOW AI</option>
+                    <option value="video-intelligence">
+                      Video Intelligence
+                    </option>
+                    <option value="bhomara">
+                      Bespoke BHOMARA solution
+                    </option>
+                  </select>
+                </div>
 
-                  <label>
-                    What would you like to improve?
-                    <textarea
-                      name="challenge"
-                      rows={6}
-                      placeholder="Tell us about the process, problem or opportunity..."
-                      required
-                    />
+                <div className="contact-field">
+                  <label htmlFor="challenge">
+                    What challenge are you trying to solve?
                   </label>
+                  <textarea
+                    id="challenge"
+                    name="challenge"
+                    rows={6}
+                    maxLength={5000}
+                    required
+                  />
+                </div>
 
-                  <label className="consent-field">
-                    <input type="checkbox" name="consent" required />
-                    <span>
-                      I agree that BHOMARA may use the information provided to
-                      respond to this enquiry.
-                    </span>
-                  </label>
+                <label className="contact-consent">
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    required
+                  />
 
-                  <button className="contact-submit" type="submit">
-                    Send Demo Request
-                  </button>
+                  <span>
+                    I agree that BHOMARA may use the information I provide
+                    to respond to this enquiry.
+                  </span>
+                </label>
 
-                  <p className="form-note">
-                    This development form currently demonstrates the enquiry
-                    experience. Secure online delivery will be connected before
-                    the public website goes live.
+                <div
+                  ref={turnstileContainerRef}
+                  className="contact-turnstile"
+                />
+
+                {submitError && (
+                  <p className="contact-form-error" role="alert">
+                    {submitError}
                   </p>
-                </form>
-              </>
+                )}
+
+                <button
+                  type="submit"
+                  className="contact-submit"
+                  disabled={
+                    !turnstileToken ||
+                    isSubmitting ||
+                    !TURNSTILE_SITE_KEY
+                  }
+                >
+                  {isSubmitting
+                    ? "Sending enquiry..."
+                    : "Request a demo"}
+                </button>
+              </form>
             )}
           </div>
-        </section>
-      </main>
-
-      <footer className="contact-footer">
-        <div>
-          <Link className="contact-brand" to="/">
-            BHOMARA
-          </Link>
-
-          <p>Practical intelligence. Real-world impact.</p>
         </div>
-
-        <Link to="/">Return to BHOMARA</Link>
-      </footer>
-    </div>
+      </section>
+    </main>
   );
 }
