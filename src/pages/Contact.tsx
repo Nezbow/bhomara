@@ -189,197 +189,281 @@ export default function Contact() {
 
   return (
     <main className="contact-page">
-      <section className="contact-hero">
-        <div className="contact-shell">
-          <p className="contact-eyebrow">CONTACT BHOMARA</p>
+      <header className="contact-header">
+        <a className="contact-brand" href="/">
+          BHOMARA
+        </a>
 
-          <h1>
-            Tell us what you need
-            <span> to improve.</span>
-          </h1>
+        <a className="contact-home-link" href="/">
+          Back to home
+        </a>
+      </header>
 
-          <p className="contact-intro">
-            Whether you are exploring VARA AI, NEZBOW AI, our upcoming
-            Video Intelligence platform, or a bespoke AI solution, tell us
-            about the challenge you are trying to solve.
-          </p>
-        </div>
-      </section>
+      <section className="contact-experience">
+        <div className="contact-glow contact-glow-one" />
+        <div className="contact-glow contact-glow-two" />
 
-      <section className="contact-content">
-        <div className="contact-shell contact-grid">
-          <div className="contact-copy">
-            <p className="contact-section-label">START A CONVERSATION</p>
-
-            <h2>Request a demo or discuss your workflow.</h2>
-
-            <p>
-              Share a little about your organisation and the problem you
-              want to solve. We will review your enquiry and respond with
-              the most relevant next step.
+        <div className="contact-layout">
+          <div className="contact-story">
+            <p className="contact-eyebrow">
+              <span />
+              START A CONVERSATION
             </p>
 
-            <div className="contact-detail">
-              <span>Email</span>
-              <a href="mailto:hello@bhomara.com">
-                hello@bhomara.com
-              </a>
+            <h1>
+              Tell us what you
+              <span> want to improve.</span>
+            </h1>
+
+            <p className="contact-lead">
+              Bring us the workflow that is slowing your organisation down,
+              the process that should be smarter, or the idea you are ready
+              to turn into something real.
+            </p>
+
+            <div className="contact-trust-grid">
+              <div className="contact-trust-item">
+                <span className="contact-trust-number">01</span>
+                <div>
+                  <strong>Understand</strong>
+                  <p>
+                    We start with the problem, your people and the way the
+                    work happens today.
+                  </p>
+                </div>
+              </div>
+
+              <div className="contact-trust-item">
+                <span className="contact-trust-number">02</span>
+                <div>
+                  <strong>Design</strong>
+                  <p>
+                    We identify where AI and automation can create meaningful
+                    operational value.
+                  </p>
+                </div>
+              </div>
+
+              <div className="contact-trust-item">
+                <span className="contact-trust-number">03</span>
+                <div>
+                  <strong>Build</strong>
+                  <p>
+                    We turn the right opportunity into a practical, focused
+                    solution.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="contact-direct">
+              <p>Prefer to start by email?</p>
+              <a href="mailto:hello@bhomara.com">hello@bhomara.com</a>
             </div>
           </div>
 
-          <div className="contact-form-card">
-            {submitted ? (
-              <div className="contact-success">
-                <p className="contact-section-label">REQUEST RECEIVED</p>
+          <div className="contact-form-wrap">
+            <div className="contact-form-accent" />
 
-                <h2>Thank you for contacting BHOMARA.</h2>
+            <div className="contact-form-card">
+              {submitted ? (
+                <div className="contact-success">
+                  <div className="contact-success-icon">✓</div>
 
-                <p>
-                  Your enquiry has been received successfully. We will
-                  review the information you provided and respond as soon
-                  as possible.
-                </p>
+                  <p className="contact-card-eyebrow">REQUEST RECEIVED</p>
 
-                <button
-                  type="button"
-                  className="contact-submit"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setSubmitError("");
-                  }}
-                >
-                  Send another enquiry
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="contact-form-row">
-                  <div className="contact-field">
-                    <label htmlFor="firstName">First name</label>
-                    <input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      autoComplete="given-name"
-                      required
-                    />
-                  </div>
+                  <h2>Thank you for contacting BHOMARA.</h2>
 
-                  <div className="contact-field">
-                    <label htmlFor="lastName">Last name</label>
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      autoComplete="family-name"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="contact-field">
-                  <label htmlFor="email">Work email</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                  />
-                </div>
-
-                <div className="contact-field">
-                  <label htmlFor="organisation">
-                    Organisation
-                  </label>
-                  <input
-                    id="organisation"
-                    name="organisation"
-                    type="text"
-                    autoComplete="organization"
-                    required
-                  />
-                </div>
-
-                <div className="contact-field">
-                  <label htmlFor="product">
-                    Product or service
-                  </label>
-                  <select
-                    id="product"
-                    name="product"
-                    defaultValue=""
-                    required
-                  >
-                    <option value="" disabled>
-                      Select an option
-                    </option>
-                    <option value="vara-ai">VARA AI</option>
-                    <option value="nezbow-ai">NEZBOW AI</option>
-                    <option value="video-intelligence">
-                      Video Intelligence
-                    </option>
-                    <option value="bhomara">
-                      Bespoke BHOMARA solution
-                    </option>
-                  </select>
-                </div>
-
-                <div className="contact-field">
-                  <label htmlFor="challenge">
-                    What challenge are you trying to solve?
-                  </label>
-                  <textarea
-                    id="challenge"
-                    name="challenge"
-                    rows={6}
-                    maxLength={5000}
-                    required
-                  />
-                </div>
-
-                <label className="contact-consent">
-                  <input
-                    type="checkbox"
-                    name="consent"
-                    required
-                  />
-
-                  <span>
-                    I agree that BHOMARA may use the information I provide
-                    to respond to this enquiry.
-                  </span>
-                </label>
-
-                <div
-                  ref={turnstileContainerRef}
-                  className="contact-turnstile"
-                />
-
-                {submitError && (
-                  <p className="contact-form-error" role="alert">
-                    {submitError}
+                  <p>
+                    Your enquiry has been received successfully. We will
+                    review what you have shared and respond with the most
+                    relevant next step.
                   </p>
-                )}
 
-                <button
-                  type="submit"
-                  className="contact-submit"
-                  disabled={
-                    !turnstileToken ||
-                    isSubmitting ||
-                    !TURNSTILE_SITE_KEY
-                  }
-                >
-                  {isSubmitting
-                    ? "Sending enquiry..."
-                    : "Request a demo"}
-                </button>
-              </form>
-            )}
+                  <button
+                    type="button"
+                    className="contact-submit contact-submit-secondary"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setSubmitError("");
+                    }}
+                  >
+                    Send another enquiry
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="contact-form-heading">
+                    <p className="contact-card-eyebrow">REQUEST A DEMO</p>
+                    <h2>Let's explore what we can solve.</h2>
+                    <p>
+                      Tell us a little about your organisation and the
+                      challenge you are facing.
+                    </p>
+                  </div>
+
+                  <form className="contact-form" onSubmit={handleSubmit}>
+                    <div className="contact-form-row">
+                      <div className="contact-field">
+                        <label htmlFor="firstName">First name</label>
+                        <input
+                          id="firstName"
+                          name="firstName"
+                          type="text"
+                          autoComplete="given-name"
+                          placeholder="First name"
+                          required
+                        />
+                      </div>
+
+                      <div className="contact-field">
+                        <label htmlFor="lastName">Last name</label>
+                        <input
+                          id="lastName"
+                          name="lastName"
+                          type="text"
+                          autoComplete="family-name"
+                          placeholder="Last name"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="contact-field">
+                      <label htmlFor="email">Work email</label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autoComplete="email"
+                        placeholder="you@organisation.com"
+                        required
+                      />
+                    </div>
+
+                    <div className="contact-field">
+                      <label htmlFor="organisation">Organisation</label>
+                      <input
+                        id="organisation"
+                        name="organisation"
+                        type="text"
+                        autoComplete="organization"
+                        placeholder="Organisation name"
+                        required
+                      />
+                    </div>
+
+                    <div className="contact-field">
+                      <label htmlFor="product">
+                        What are you interested in?
+                      </label>
+
+                      <div className="contact-select-wrap">
+                        <select
+                          id="product"
+                          name="product"
+                          defaultValue=""
+                          required
+                        >
+                          <option value="" disabled>
+                            Select a product or service
+                          </option>
+                          <option value="vara-ai">VARA AI</option>
+                          <option value="nezbow-ai">NEZBOW AI</option>
+                          <option value="video-intelligence">
+                            Video Intelligence
+                          </option>
+                          <option value="bhomara">
+                            Bespoke BHOMARA solution
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="contact-field">
+                      <label htmlFor="challenge">
+                        What would you like to improve?
+                      </label>
+
+                      <textarea
+                        id="challenge"
+                        name="challenge"
+                        rows={5}
+                        maxLength={5000}
+                        placeholder="Tell us about the workflow, challenge or opportunity..."
+                        required
+                      />
+                    </div>
+
+                    <label className="contact-consent">
+                      <input type="checkbox" name="consent" required />
+                      <span>
+                        I agree that BHOMARA may use the information I provide
+                        to respond to this enquiry.
+                      </span>
+                    </label>
+
+                    <div className="contact-security">
+                      <span>SECURE ENQUIRY</span>
+
+                      <div
+                        ref={turnstileContainerRef}
+                        className="contact-turnstile"
+                      />
+                    </div>
+
+                    {submitError && (
+                      <p className="contact-form-error" role="alert">
+                        {submitError}
+                      </p>
+                    )}
+
+                    <button
+                      type="submit"
+                      className="contact-submit"
+                      disabled={
+                        !turnstileToken ||
+                        isSubmitting ||
+                        !TURNSTILE_SITE_KEY
+                      }
+                    >
+                      <span>
+                        {isSubmitting
+                          ? "Sending enquiry..."
+                          : "Request a demo"}
+                      </span>
+
+                      {!isSubmitting && (
+                        <span className="contact-submit-arrow">→</span>
+                      )}
+                    </button>
+
+                    <p className="contact-privacy-note">
+                      Your information is used only to respond to your enquiry.
+                      No unnecessary data collection.
+                    </p>
+                  </form>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </section>
+
+      <footer className="contact-footer">
+        <div>
+          <a className="contact-brand contact-footer-brand" href="/">
+            BHOMARA
+          </a>
+          <p>Practical intelligence. Built around real work.</p>
+        </div>
+
+        <div className="contact-footer-links">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/">Home</a>
+        </div>
+      </footer>
     </main>
   );
 }
