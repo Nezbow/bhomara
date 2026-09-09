@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import "./VaraAI.css";
 
+const VARA_APP_URL = "https://vara-ai.pages.dev/login";
+
 export default function VaraAI() {
   return (
     <div className="vara-page">
@@ -44,13 +46,18 @@ export default function VaraAI() {
             </p>
 
             <div className="vara-actions">
-              <Link className="vara-primary-button" to="/contact">
+              <a
+                className="vara-primary-button"
+                href={VARA_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Launch VARA AI
+              </a>
+
+              <Link className="vara-secondary-button" to="/contact">
                 Request a Demo
               </Link>
-
-              <a className="vara-secondary-button" href="#capabilities">
-                Explore Capabilities
-              </a>
             </div>
           </div>
 
@@ -308,9 +315,20 @@ export default function VaraAI() {
             potential pilot opportunities.
           </p>
 
-          <Link className="vara-primary-button" to="/contact">
-            Request a VARA Demo
-          </Link>
+          <div className="vara-actions">
+            <a
+              className="vara-primary-button"
+              href={VARA_APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Launch VARA AI
+            </a>
+
+            <Link className="vara-secondary-button" to="/contact">
+              Request a VARA Demo
+            </Link>
+          </div>
         </section>
       </main>
 
