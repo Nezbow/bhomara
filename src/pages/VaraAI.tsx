@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./VaraAI.css";
 
-const VARA_APP_URL = "https://vara-ai.pages.dev/login";
+const VARA_APP_URL = "https://vara.bhomara.com/login";
 
 export default function VaraAI() {
   return (
