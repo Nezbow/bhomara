@@ -11,6 +11,7 @@ import "./index.css";
 import App from "./App";
 import Contact from "./pages/Contact";
 import NezbowAI from "./pages/NezbowAI";
+import PaymentResult from "./pages/PaymentResult";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import VaraAI from "./pages/VaraAI";
@@ -41,6 +42,16 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+
+        <Route
+          path="/payment-success"
+          element={<PaymentResult status="success" />}
+        />
+
+        <Route
+          path="/payment-cancelled"
+          element={<PaymentResult status="cancelled" />}
+        />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

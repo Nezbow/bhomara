@@ -1,0 +1,235 @@
+.payment-result-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(20, 151, 144, 0.12),
+      transparent 38%
+    ),
+    #f5f7f8;
+  color: #10272a;
+}
+
+.payment-result-header {
+  width: min(1200px, calc(100% - 64px));
+  min-height: 88px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.payment-result-header img {
+  display: block;
+  width: 132px;
+  max-width: 100%;
+  height: auto;
+  max-height: 68px;
+  object-fit: contain;
+}
+
+.payment-result-header > a:last-child {
+  color: #566669;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.payment-result-header > a:last-child:hover {
+  color: #0c7d78;
+}
+
+.payment-result-main {
+  width: min(760px, calc(100% - 64px));
+  margin: auto;
+  padding: 80px 0;
+}
+
+.payment-result-card {
+  padding: 70px 64px;
+  text-align: center;
+  border: 1px solid rgba(15, 91, 91, 0.14);
+  border-radius: 32px;
+  background: #ffffff;
+  box-shadow: 0 35px 90px rgba(18, 55, 58, 0.13);
+}
+
+.payment-result-icon {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.payment-result-icon-success {
+  background: #0c7c77;
+  box-shadow: 0 16px 35px rgba(12, 124, 119, 0.24);
+}
+
+.payment-result-icon-cancelled {
+  background: #7b888a;
+  box-shadow: 0 16px 35px rgba(67, 82, 85, 0.18);
+}
+
+.payment-result-kicker {
+  margin: 0 0 18px;
+  color: #0b817d;
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+}
+
+.payment-result-card h1 {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #112d30;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.03;
+  letter-spacing: -0.05em;
+}
+
+.payment-result-copy {
+  max-width: 610px;
+  margin: 28px auto 0;
+  color: #657477;
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+.payment-result-actions {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.payment-result-primary,
+.payment-result-secondary {
+  min-height: 52px;
+  padding: 0 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.payment-result-primary {
+  background: #0c7c77;
+  color: #ffffff;
+  box-shadow: 0 14px 35px rgba(12, 124, 119, 0.2);
+}
+
+.payment-result-primary:hover {
+  transform: translateY(-2px);
+  background: #086b67;
+}
+
+.payment-result-secondary {
+  border: 1px solid rgba(18, 62, 65, 0.2);
+  background: #ffffff;
+  color: #17383b;
+}
+
+.payment-result-secondary:hover {
+  transform: translateY(-2px);
+  border-color: rgba(12, 124, 119, 0.42);
+}
+
+.payment-result-primary:focus-visible,
+.payment-result-secondary:focus-visible,
+.payment-result-header a:focus-visible {
+  outline: 3px solid rgba(12, 124, 119, 0.28);
+  outline-offset: 3px;
+}
+
+.payment-result-footer {
+  width: min(1200px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 32px 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  border-top: 1px solid rgba(17, 75, 76, 0.1);
+}
+
+.payment-result-footer p {
+  margin: 0;
+  color: #7b888a;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 700px) {
+  .payment-result-header,
+  .payment-result-main,
+  .payment-result-footer {
+    width: min(100% - 32px, 1200px);
+  }
+
+  .payment-result-header {
+    min-height: 76px;
+  }
+
+  .payment-result-header img {
+    width: 110px;
+    max-height: 58px;
+  }
+
+  .payment-result-header > a:last-child {
+    font-size: 0.76rem;
+  }
+
+  .payment-result-main {
+    padding: 55px 0 70px;
+  }
+
+  .payment-result-card {
+    padding: 52px 22px;
+    border-radius: 24px;
+  }
+
+  .payment-result-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 1.7rem;
+  }
+
+  .payment-result-card h1 {
+    font-size: clamp(2.3rem, 12vw, 3.5rem);
+  }
+
+  .payment-result-copy {
+    font-size: 0.96rem;
+  }
+
+  .payment-result-actions {
+    flex-direction: column;
+  }
+
+  .payment-result-actions a {
+    width: 100%;
+  }
+
+  .payment-result-footer {
+    padding-bottom: 32px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
