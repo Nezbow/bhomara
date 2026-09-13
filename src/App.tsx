@@ -5,8 +5,25 @@ function App() {
   return (
     <div className="site-shell">
       <header className="site-header">
-        <a className="brand" href="#home" aria-label="BHOMARA home">
-          BHOMARA
+        <a
+          className="brand"
+          href="#home"
+          aria-label="BHOMARA home"
+          style={{ display: "inline-flex", alignItems: "center" }}
+        >
+          <img
+            src="/bhomara-logo-transparent.png"
+            alt="BHOMARA"
+            width="160"
+            height="102"
+            style={{
+              display: "block",
+              width: "160px",
+              height: "auto",
+              maxHeight: "72px",
+              objectFit: "contain",
+            }}
+          />
         </a>
 
         <nav className="main-nav" aria-label="Main navigation">
@@ -54,9 +71,24 @@ function App() {
           <div className="hero-visual" aria-hidden="true">
             <div className="orbit orbit-one" />
             <div className="orbit orbit-two" />
+
             <div className="intelligence-core">
-              <span>B</span>
+              <img
+                src="/bhomara-logo-transparent.png"
+                alt=""
+                width="160"
+                height="102"
+                style={{
+                  display: "block",
+                  width: "160px",
+                  maxWidth: "90%",
+                  height: "auto",
+                  objectFit: "contain",
+                  transform: "rotate(-12deg)",
+                }}
+              />
             </div>
+
             <div className="signal signal-one" />
             <div className="signal signal-two" />
             <div className="signal signal-three" />
@@ -66,7 +98,9 @@ function App() {
         <section className="intro-section" id="products">
           <div className="section-heading">
             <p className="eyebrow">OUR TECHNOLOGY</p>
+
             <h2>One company. Multiple intelligence platforms.</h2>
+
             <p>
               BHOMARA develops focused AI products for organisations,
               independent creators and the next generation of digital work.
@@ -76,8 +110,11 @@ function App() {
           <div className="product-grid">
             <article className="product-card featured-card">
               <div className="product-number">01</div>
+
               <p className="product-label">BUSINESS INTELLIGENCE</p>
+
               <h3>VARA AI</h3>
+
               <p>
                 AI-assisted productivity and automation for projects,
                 documents, communications and business workflows.
@@ -90,8 +127,11 @@ function App() {
 
             <article className="product-card">
               <div className="product-number">02</div>
+
               <p className="product-label">CREATOR INTELLIGENCE</p>
+
               <h3>NEZBOW AI</h3>
+
               <p>
                 Intelligent marketing and promotional technology designed to
                 help independent artists build, launch and grow.
@@ -104,8 +144,11 @@ function App() {
 
             <article className="product-card">
               <div className="product-number">03</div>
+
               <p className="product-label">VIDEO INTELLIGENCE</p>
+
               <h3>Coming Next</h3>
+
               <p>
                 A new intelligence platform for discovering opportunities in
                 video, audience behaviour and high-performing digital content.
@@ -121,13 +164,16 @@ function App() {
         <section className="solutions-section" id="solutions">
           <div className="section-heading light-heading">
             <p className="eyebrow">BUILT FOR REAL WORK</p>
+
             <h2>AI should solve problems, not create complexity.</h2>
           </div>
 
           <div className="solutions-grid">
             <div>
               <span>01</span>
+
               <h3>Business</h3>
+
               <p>
                 Automate repetitive administration and give teams more time
                 for higher-value work.
@@ -136,7 +182,9 @@ function App() {
 
             <div>
               <span>02</span>
+
               <h3>Public Sector</h3>
+
               <p>
                 Explore intelligent workflows for requests, information,
                 documents and service processes.
@@ -145,7 +193,9 @@ function App() {
 
             <div>
               <span>03</span>
+
               <h3>Creators</h3>
+
               <p>
                 Turn creative work into coordinated campaigns, content and
                 measurable audience growth.
@@ -173,7 +223,9 @@ function App() {
         <section className="marketplace-section" id="marketplace">
           <div>
             <p className="eyebrow">BHOMARA MARKETPLACE</p>
+
             <h2>Technology can create value in more than one way.</h2>
+
             <p>
               Our marketplace is being prepared for digital tools, intelligent
               resources and selected products from across the BHOMARA
