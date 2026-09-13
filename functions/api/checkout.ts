@@ -5,6 +5,11 @@ interface Env {
   SITE_URL?: string;
 }
 
+interface CheckoutContext {
+  request: Request;
+  env: Env;
+}
+
 type CheckoutRequest = {
   priceId?: string;
 };
@@ -39,7 +44,9 @@ function jsonResponse(
   });
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export const onRequestPost = async (
+  context: CheckoutContext,
+): Promise<Response> => {
   const stripeSecretKey = context.env.STRIPE_SECRET_KEY;
 
   if (!stripeSecretKey) {
@@ -80,9 +87,14 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     );
   }
 
-  const mode = PRICE_MODES[priceId as keyof typeof PRICE_MODES];
+  const mode =
+    PRICE_MODES[priceId as keyof typeof PRICE_MODES];
+
   const requestOrigin = new URL(context.request.url).origin;
-  const siteUrl = (context.env.SITE_URL || requestOrigin).replace(/\/+$/, "");
+
+  const siteUrl = (
+    context.env.SITE_URL || requestOrigin
+  ).replace(/\/+$/, "");
 
   try {
     const stripe = new Stripe(stripeSecretKey, {
@@ -97,7 +109,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
           quantity: 1,
         },
       ],
-      success_url: `${siteUrl}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url:
+        `${siteUrl}/payment-success` +
+        "?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: `${siteUrl}/payment-cancelled`,
       billing_address_collection: "auto",
       allow_promotion_codes: true,
@@ -109,7 +123,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     });
 
     if (!session.url) {
-      throw new Error("Stripe did not return a checkout URL.");
+      throw new Error(
+        "Stripe did not return a checkout URL.",
+      );
     }
 
     return jsonResponse(
@@ -120,12 +136,16 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       200,
     );
   } catch (error) {
-    console.error("Stripe Checkout session could not be created.", error);
+    console.error(
+      "Stripe Checkout session could not be created.",
+      error,
+    );
 
     return jsonResponse(
       {
         ok: false,
-        message: "Checkout could not be started. Please try again.",
+        message:
+          "Checkout could not be started. Please try again.",
       },
       500,
     );
