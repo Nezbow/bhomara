@@ -1,12 +1,29 @@
 import { Link } from "react-router-dom";
 import "./NezbowAI.css";
 
+const BHOMARA_LOGO_URL = "/bhomara-logo-transparent.png";
+
 export default function NezbowAI() {
   return (
     <div className="nezbow-page">
       <header className="nezbow-header">
-        <Link className="nezbow-parent-brand" to="/">
-          BHOMARA
+        <Link
+          className="nezbow-parent-brand"
+          to="/"
+          aria-label="BHOMARA home"
+        >
+          <img
+            src={BHOMARA_LOGO_URL}
+            alt="BHOMARA"
+            style={{
+              display: "block",
+              width: "132px",
+              maxWidth: "100%",
+              height: "auto",
+              maxHeight: "68px",
+              objectFit: "contain",
+            }}
+          />
         </Link>
 
         <nav className="nezbow-nav" aria-label="NEZBOW AI navigation">
@@ -113,14 +130,16 @@ export default function NezbowAI() {
 
                   <div className="nezbow-activity-row">
                     <span className="nezbow-activity-icon">01</span>
+
                     <div>
-                      <strong>Captions & messaging</strong>
+                      <strong>Captions &amp; messaging</strong>
                       <small>Prepare platform-ready promotional copy</small>
                     </div>
                   </div>
 
                   <div className="nezbow-activity-row">
                     <span className="nezbow-activity-icon">02</span>
+
                     <div>
                       <strong>Creative assets</strong>
                       <small>Organise promotional visuals and media</small>
@@ -129,6 +148,7 @@ export default function NezbowAI() {
 
                   <div className="nezbow-activity-row">
                     <span className="nezbow-activity-icon">03</span>
+
                     <div>
                       <strong>Campaign planning</strong>
                       <small>Coordinate promotion around each release</small>
@@ -171,15 +191,14 @@ export default function NezbowAI() {
           <div className="nezbow-section-heading">
             <p className="nezbow-kicker">CAPABILITIES</p>
 
-            <h2>
-              From finished track to coordinated promotion.
-            </h2>
+            <h2>From finished track to coordinated promotion.</h2>
           </div>
 
           <div className="nezbow-capability-grid">
             <article>
               <span>01</span>
               <h3>Release Hub</h3>
+
               <p>
                 Organise each music release and keep its promotional work,
                 assets and campaign activity connected.
@@ -189,15 +208,17 @@ export default function NezbowAI() {
             <article>
               <span>02</span>
               <h3>AI Promotion</h3>
+
               <p>
                 Generate promotional ideas and campaign support around an
-                artist's music and release objectives.
+                artist&apos;s music and release objectives.
               </p>
             </article>
 
             <article>
               <span>03</span>
-              <h3>Captions & Hashtags</h3>
+              <h3>Captions &amp; Hashtags</h3>
+
               <p>
                 Create platform-specific promotional copy designed to help
                 artists communicate consistently across social channels.
@@ -207,6 +228,7 @@ export default function NezbowAI() {
             <article>
               <span>04</span>
               <h3>Promotional Assets</h3>
+
               <p>
                 Bring campaign graphics, media and other release assets into
                 one organised promotional workspace.
@@ -216,6 +238,7 @@ export default function NezbowAI() {
             <article>
               <span>05</span>
               <h3>Publishing Workflow</h3>
+
               <p>
                 Build toward coordinated publishing and scheduling across
                 connected social and creator platforms.
@@ -225,6 +248,7 @@ export default function NezbowAI() {
             <article>
               <span>06</span>
               <h3>Growth Intelligence</h3>
+
               <p>
                 Build toward clearer campaign performance, engagement and
                 audience-growth insights from one dashboard.
@@ -237,15 +261,14 @@ export default function NezbowAI() {
           <div className="nezbow-section-heading nezbow-light-heading">
             <p className="nezbow-kicker">THE ARTIST WORKFLOW</p>
 
-            <h2>
-              One release. One connected promotional journey.
-            </h2>
+            <h2>One release. One connected promotional journey.</h2>
           </div>
 
           <div className="nezbow-workflow-grid">
             <article>
               <span>01</span>
               <h3>Bring the release in</h3>
+
               <p>
                 Start with the track, release information and the creative
                 assets that define the campaign.
@@ -255,6 +278,7 @@ export default function NezbowAI() {
             <article>
               <span>02</span>
               <h3>Build the campaign</h3>
+
               <p>
                 Use AI-assisted tools to develop messaging, promotional
                 material and campaign ideas around the music.
@@ -264,6 +288,7 @@ export default function NezbowAI() {
             <article>
               <span>03</span>
               <h3>Prepare distribution</h3>
+
               <p>
                 Organise content for the social and music platforms that matter
                 to the artist and their audience.
@@ -273,6 +298,7 @@ export default function NezbowAI() {
             <article>
               <span>04</span>
               <h3>Learn and grow</h3>
+
               <p>
                 Develop a clearer picture of what is working and use those
                 insights to improve future campaigns.
@@ -285,15 +311,14 @@ export default function NezbowAI() {
           <div className="nezbow-section-heading">
             <p className="nezbow-kicker">BUILT FOR INDEPENDENCE</p>
 
-            <h2>
-              Technology that works around the artist.
-            </h2>
+            <h2>Technology that works around the artist.</h2>
           </div>
 
           <div className="nezbow-built-grid">
             <div>
               <span>ARTISTS</span>
               <h3>Independent musicians</h3>
+
               <p>
                 A practical workspace for artists managing their own releases,
                 promotion and audience development.
@@ -303,15 +328,17 @@ export default function NezbowAI() {
             <div>
               <span>TEAMS</span>
               <h3>Small artist teams</h3>
+
               <p>
                 Give managers and collaborators a clearer way to organise
-                promotional activity around an artist's releases.
+                promotional activity around an artist&apos;s releases.
               </p>
             </div>
 
             <div>
               <span>GROWTH</span>
               <h3>Emerging careers</h3>
+
               <p>
                 Help developing artists approach promotion with more structure,
                 consistency and useful intelligence.
@@ -342,8 +369,23 @@ export default function NezbowAI() {
 
       <footer className="nezbow-footer">
         <div>
-          <Link className="nezbow-parent-brand" to="/">
-            BHOMARA
+          <Link
+            className="nezbow-parent-brand"
+            to="/"
+            aria-label="BHOMARA home"
+          >
+            <img
+              src={BHOMARA_LOGO_URL}
+              alt="BHOMARA"
+              style={{
+                display: "block",
+                width: "120px",
+                maxWidth: "100%",
+                height: "auto",
+                maxHeight: "62px",
+                objectFit: "contain",
+              }}
+            />
           </Link>
 
           <p>NEZBOW AI is a BHOMARA technology product.</p>

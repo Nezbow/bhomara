@@ -2,13 +2,29 @@ import { Link } from "react-router-dom";
 import "./VaraAI.css";
 
 const VARA_APP_URL = "https://vara.bhomara.com/login";
+const BHOMARA_LOGO_URL = "/bhomara-logo-transparent.png";
 
 export default function VaraAI() {
   return (
     <div className="vara-page">
       <header className="vara-header">
-        <Link className="vara-parent-brand" to="/">
-          BHOMARA
+        <Link
+          className="vara-parent-brand"
+          to="/"
+          aria-label="BHOMARA home"
+        >
+          <img
+            src={BHOMARA_LOGO_URL}
+            alt="BHOMARA"
+            style={{
+              display: "block",
+              width: "132px",
+              maxWidth: "100%",
+              height: "auto",
+              maxHeight: "68px",
+              objectFit: "contain",
+            }}
+          />
         </Link>
 
         <nav className="vara-nav" aria-label="VARA AI navigation">
@@ -65,6 +81,7 @@ export default function VaraAI() {
             <div className="preview-topbar">
               <div className="preview-brand">
                 <span className="preview-logo">V</span>
+
                 <div>
                   <strong>VARA AI</strong>
                   <small>Intelligent Workspace</small>
@@ -90,6 +107,7 @@ export default function VaraAI() {
                     <small>WORKSPACE</small>
                     <h3>Good morning.</h3>
                   </div>
+
                   <span>New Project +</span>
                 </div>
 
@@ -115,6 +133,7 @@ export default function VaraAI() {
 
                   <div className="activity-row">
                     <span className="activity-icon">01</span>
+
                     <div>
                       <strong>Project workspace</strong>
                       <small>Files and project information organised</small>
@@ -123,6 +142,7 @@ export default function VaraAI() {
 
                   <div className="activity-row">
                     <span className="activity-icon">02</span>
+
                     <div>
                       <strong>AI assistance</strong>
                       <small>Support for everyday knowledge work</small>
@@ -131,6 +151,7 @@ export default function VaraAI() {
 
                   <div className="activity-row">
                     <span className="activity-icon">03</span>
+
                     <div>
                       <strong>Business tools</strong>
                       <small>Practical workflows in one environment</small>
@@ -177,6 +198,7 @@ export default function VaraAI() {
             <article>
               <span>01</span>
               <h3>AI Assistant</h3>
+
               <p>
                 Work with an AI assistant for drafting, thinking, summarising
                 and everyday business support.
@@ -186,6 +208,7 @@ export default function VaraAI() {
             <article>
               <span>02</span>
               <h3>Projects</h3>
+
               <p>
                 Create structured project workspaces and keep important
                 information connected to the work it belongs to.
@@ -195,6 +218,7 @@ export default function VaraAI() {
             <article>
               <span>03</span>
               <h3>Documents</h3>
+
               <p>
                 Bring documents into a central workspace so information can be
                 organised and used more effectively.
@@ -204,6 +228,7 @@ export default function VaraAI() {
             <article>
               <span>04</span>
               <h3>Business Tools</h3>
+
               <p>
                 Access practical tools designed around common organisational
                 and administrative workflows.
@@ -213,6 +238,7 @@ export default function VaraAI() {
             <article>
               <span>05</span>
               <h3>Integrations</h3>
+
               <p>
                 Connect external services progressively as VARA develops into
                 a broader operational workspace.
@@ -222,6 +248,7 @@ export default function VaraAI() {
             <article>
               <span>06</span>
               <h3>Analytics</h3>
+
               <p>
                 Build toward clearer visibility of activity, workflows and
                 useful operational insights.
@@ -240,6 +267,7 @@ export default function VaraAI() {
             <article>
               <span>BUSINESS</span>
               <h3>Administrative workflows</h3>
+
               <p>
                 Reduce repetitive handling of information and give teams a
                 more organised place to work.
@@ -249,6 +277,7 @@ export default function VaraAI() {
             <article>
               <span>PUBLIC SECTOR</span>
               <h3>Service processes</h3>
+
               <p>
                 Explore AI-assisted approaches to requests, documents,
                 information handling and operational workflows.
@@ -256,8 +285,9 @@ export default function VaraAI() {
             </article>
 
             <article>
-              <span>PROPERTY & SERVICES</span>
+              <span>PROPERTY &amp; SERVICES</span>
               <h3>Operational coordination</h3>
+
               <p>
                 Bring project information, documents and recurring
                 administrative tasks into a clearer workflow.
@@ -269,13 +299,17 @@ export default function VaraAI() {
         <section className="vara-how-section" id="how-it-works">
           <div className="vara-section-heading">
             <p className="vara-kicker">HOW WE APPROACH AUTOMATION</p>
-            <h2>Start with the process. Apply intelligence where it matters.</h2>
+
+            <h2>
+              Start with the process. Apply intelligence where it matters.
+            </h2>
           </div>
 
           <div className="vara-process">
             <div>
               <span>01</span>
               <h3>Understand</h3>
+
               <p>
                 Identify the repetitive process, information flow and points
                 where time is being lost.
@@ -285,6 +319,7 @@ export default function VaraAI() {
             <div>
               <span>02</span>
               <h3>Design</h3>
+
               <p>
                 Map a practical workflow that combines automation, AI
                 assistance and appropriate human oversight.
@@ -294,6 +329,7 @@ export default function VaraAI() {
             <div>
               <span>03</span>
               <h3>Deploy</h3>
+
               <p>
                 Introduce the solution in a controlled way, evaluate the
                 results and improve it around real operational needs.
@@ -305,9 +341,7 @@ export default function VaraAI() {
         <section className="vara-demo-section" id="demo">
           <p className="vara-kicker">SEE VARA IN ACTION</p>
 
-          <h2>
-            Show us the process that consumes your team's time.
-          </h2>
+          <h2>Show us the process that consumes your team's time.</h2>
 
           <p>
             VARA is currently under active development. We are speaking with
@@ -334,9 +368,25 @@ export default function VaraAI() {
 
       <footer className="vara-footer">
         <div>
-          <Link className="vara-parent-brand" to="/">
-            BHOMARA
+          <Link
+            className="vara-parent-brand"
+            to="/"
+            aria-label="BHOMARA home"
+          >
+            <img
+              src={BHOMARA_LOGO_URL}
+              alt="BHOMARA"
+              style={{
+                display: "block",
+                width: "120px",
+                maxWidth: "100%",
+                height: "auto",
+                maxHeight: "62px",
+                objectFit: "contain",
+              }}
+            />
           </Link>
+
           <p>VARA AI is a BHOMARA technology product.</p>
         </div>
 
