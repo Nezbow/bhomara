@@ -364,6 +364,7 @@
 .nezbow-problem-section,
 .nezbow-capabilities-section,
 .nezbow-built-section,
+.nezbow-pricing-section,
 .nezbow-demo-section {
   width: min(1400px, calc(100% - 64px));
   margin: 0 auto;
@@ -527,6 +528,189 @@
   line-height: 1.75;
 }
 
+.nezbow-pricing-section {
+  padding: 30px 0 130px;
+}
+
+.nezbow-pricing-intro {
+  max-width: 720px;
+  margin: 25px 0 0;
+  color: #746a7b;
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+.nezbow-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.nezbow-price-card {
+  position: relative;
+  min-height: 500px;
+  padding: 38px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(91, 56, 112, 0.12);
+  border-radius: 26px;
+  background: #ffffff;
+  box-shadow: 0 18px 50px rgba(65, 43, 80, 0.07);
+}
+
+.nezbow-price-card-featured {
+  border-color: rgba(117, 66, 170, 0.52);
+  box-shadow: 0 22px 65px rgba(117, 66, 170, 0.16);
+}
+
+.nezbow-video-price-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(155, 78, 185, 0.11),
+      transparent 42%
+    ),
+    #ffffff;
+}
+
+.nezbow-popular-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: #f0e7f8;
+  color: #7542aa;
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+}
+
+.nezbow-price-label {
+  margin: 0 0 20px;
+  color: #7a45ae;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.nezbow-price-card h3 {
+  max-width: 520px;
+  margin: 0;
+  color: #35283e;
+  font-size: clamp(1.55rem, 2.3vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.nezbow-price {
+  margin-top: 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.nezbow-price strong {
+  color: #2e2238;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.nezbow-price span {
+  color: #817687;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.nezbow-price-description {
+  max-width: 580px;
+  margin: 25px 0 0;
+  color: #756b7c;
+  line-height: 1.75;
+}
+
+.nezbow-price-card ul {
+  margin: 28px 0 34px;
+  padding: 0;
+  display: grid;
+  gap: 13px;
+  list-style: none;
+}
+
+.nezbow-price-card li {
+  position: relative;
+  padding-left: 25px;
+  color: #5f5567;
+  line-height: 1.55;
+}
+
+.nezbow-price-card li::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #7542aa;
+  font-weight: 900;
+}
+
+.nezbow-checkout-button {
+  width: 100%;
+  min-height: 52px;
+  margin-top: auto;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #7542aa;
+  color: #ffffff;
+  box-shadow: 0 14px 32px rgba(117, 66, 170, 0.2);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 850;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.nezbow-checkout-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #653594;
+  box-shadow: 0 18px 38px rgba(117, 66, 170, 0.27);
+}
+
+.nezbow-checkout-button:focus-visible {
+  outline: 3px solid rgba(117, 66, 170, 0.3);
+  outline-offset: 3px;
+}
+
+.nezbow-checkout-button:disabled {
+  cursor: wait;
+  opacity: 0.64;
+}
+
+.nezbow-pricing-note {
+  max-width: 800px;
+  margin: 28px auto 0;
+  color: #7b7082;
+  text-align: center;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.nezbow-checkout-error {
+  max-width: 800px;
+  margin: 18px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(177, 45, 75, 0.22);
+  border-radius: 14px;
+  background: #fff1f4;
+  color: #972943;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .nezbow-demo-section {
   margin-bottom: 120px;
   padding: 90px 60px;
@@ -617,12 +801,24 @@
   }
 }
 
+@media (max-width: 760px) {
+  .nezbow-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nezbow-price-card {
+    min-height: 0;
+    padding: 30px;
+  }
+}
+
 @media (max-width: 700px) {
   .nezbow-header,
   .nezbow-hero,
   .nezbow-problem-section,
   .nezbow-capabilities-section,
   .nezbow-built-section,
+  .nezbow-pricing-section,
   .nezbow-demo-section {
     width: min(100% - 32px, 1400px);
   }
@@ -631,30 +827,12 @@
     height: 76px;
   }
 
-  .nezbow-parent-brand {
-    font-size: 1rem;
-  }
-
-  .nezbow-back-link {
-    font-size: 0.75rem;
-  }
-
   .nezbow-hero {
-    min-height: auto;
-    padding: 60px 0 80px;
-    gap: 55px;
+    padding-top: 45px;
   }
 
   .nezbow-hero h1 {
-    font-size: clamp(3.2rem, 15vw, 5rem);
-  }
-
-  .nezbow-actions {
-    flex-direction: column;
-  }
-
-  .nezbow-actions a {
-    width: 100%;
+    font-size: clamp(3rem, 15vw, 4.5rem);
   }
 
   .nezbow-preview-body {
@@ -669,17 +847,19 @@
     padding: 20px;
   }
 
-  .nezbow-preview-cards {
-    grid-template-columns: 1fr;
+  .nezbow-problem-section {
+    padding-top: 95px;
+    padding-bottom: 95px;
   }
 
-  .nezbow-problem-section,
+  .nezbow-capabilities-section,
+  .nezbow-pricing-section {
+    padding-bottom: 95px;
+  }
+
   .nezbow-built-section {
-    padding: 90px 0;
-  }
-
-  .nezbow-capabilities-section {
-    padding-bottom: 90px;
+    padding-top: 95px;
+    padding-bottom: 95px;
   }
 
   .nezbow-workflow-section {
@@ -699,6 +879,17 @@
     margin-top: 55px;
   }
 
+  .nezbow-price-card {
+    padding: 27px 23px;
+    border-radius: 22px;
+  }
+
+  .nezbow-popular-badge {
+    position: static;
+    width: fit-content;
+    margin-bottom: 18px;
+  }
+
   .nezbow-demo-section {
     margin-bottom: 80px;
     padding: 65px 24px;
@@ -707,5 +898,33 @@
   .nezbow-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .nezbow-header {
+    gap: 16px;
+  }
+
+  .nezbow-back-link {
+    font-size: 0.78rem;
+  }
+
+  .nezbow-preview-topbar {
+    padding: 0 16px;
+  }
+
+  .nezbow-preview-status {
+    display: none;
+  }
+
+  .nezbow-preview-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .nezbow-price {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
   }
 }

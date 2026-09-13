@@ -364,6 +364,7 @@
 .vara-problem-section,
 .vara-capabilities-section,
 .vara-how-section,
+.vara-assessment-section,
 .vara-demo-section {
   width: min(1400px, calc(100% - 64px));
   margin: 0 auto;
@@ -521,6 +522,165 @@
   line-height: 1.75;
 }
 
+.vara-assessment-section {
+  padding: 20px 0 130px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(480px, 1.15fr);
+  align-items: center;
+  gap: 80px;
+}
+
+.vara-assessment-intro h2 {
+  margin: 0;
+  color: #112d30;
+  font-size: clamp(2.5rem, 4.2vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.05em;
+}
+
+.vara-assessment-intro > p:not(.vara-kicker) {
+  max-width: 660px;
+  margin: 26px 0 0;
+  color: #657477;
+  font-size: 1.03rem;
+  line-height: 1.8;
+}
+
+.vara-assessment-card {
+  padding: 42px;
+  border: 1px solid rgba(12, 124, 119, 0.2);
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 28px 75px rgba(18, 55, 58, 0.12);
+}
+
+.vara-assessment-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.vara-assessment-label {
+  color: #0c817c;
+  font-size: 0.67rem;
+  font-weight: 850;
+  letter-spacing: 0.15em;
+}
+
+.vara-assessment-card h3 {
+  max-width: 390px;
+  margin: 13px 0 0;
+  color: #173639;
+  font-size: 1.7rem;
+  line-height: 1.2;
+}
+
+.vara-assessment-price {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+
+.vara-assessment-price strong {
+  color: #0c7c77;
+  font-size: 3rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.vara-assessment-price span {
+  margin-top: 7px;
+  color: #728083;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.vara-assessment-list {
+  margin: 34px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 24px;
+  list-style: none;
+}
+
+.vara-assessment-list li {
+  position: relative;
+  padding-left: 25px;
+  color: #526467;
+  line-height: 1.55;
+}
+
+.vara-assessment-list li::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #0c817c;
+  font-weight: 900;
+}
+
+.vara-assessment-note {
+  margin: 30px 0 0;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: #edf6f5;
+  color: #526467;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.vara-assessment-button {
+  width: 100%;
+  min-height: 54px;
+  margin-top: 26px;
+  padding: 0 26px;
+  border: 0;
+  border-radius: 999px;
+  background: #0c7c77;
+  color: #ffffff;
+  box-shadow: 0 14px 35px rgba(12, 124, 119, 0.2);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.vara-assessment-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #086b67;
+}
+
+.vara-assessment-button:focus-visible {
+  outline: 3px solid rgba(12, 124, 119, 0.28);
+  outline-offset: 3px;
+}
+
+.vara-assessment-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.vara-checkout-error {
+  margin: 16px 0 0;
+  color: #a33131;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.vara-secure-checkout-note {
+  margin: 13px 0 0;
+  color: #849194;
+  font-size: 0.76rem;
+  text-align: center;
+}
+
 .vara-demo-section {
   margin-bottom: 120px;
   padding: 90px 60px;
@@ -595,8 +755,13 @@
 
   .vara-capability-grid,
   .vara-use-case-grid,
-  .vara-process {
+  .vara-process,
+  .vara-assessment-section {
     grid-template-columns: 1fr;
+  }
+
+  .vara-assessment-section {
+    gap: 45px;
   }
 
   .vara-capability-grid article,
@@ -616,6 +781,7 @@
   .vara-problem-section,
   .vara-capabilities-section,
   .vara-how-section,
+  .vara-assessment-section,
   .vara-demo-section {
     width: min(100% - 32px, 1400px);
   }
@@ -669,6 +835,28 @@
   .vara-problem-section,
   .vara-how-section {
     padding: 90px 0;
+  }
+
+  .vara-assessment-section {
+    padding: 10px 0 90px;
+  }
+
+  .vara-assessment-card {
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .vara-assessment-card-heading {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .vara-assessment-price {
+    align-items: flex-start;
+  }
+
+  .vara-assessment-list {
+    grid-template-columns: 1fr;
   }
 
   .vara-capabilities-section {

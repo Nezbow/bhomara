@@ -1,10 +1,65 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./VaraAI.css";
 
 const VARA_APP_URL = "https://vara.bhomara.com/login";
 const BHOMARA_LOGO_URL = "/bhomara-logo-transparent.png";
 
+const VARA_ASSESSMENT_PRICE_ID =
+  "price_1UFJdaCuowHfQrFGQ0cXyDUC";
+
+type CheckoutResponse = {
+  ok?: boolean;
+  url?: string;
+  message?: string;
+};
+
 export default function VaraAI() {
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
+
+  const startAssessmentCheckout = async () => {
+    if (isCheckoutLoading) {
+      return;
+    }
+
+    setIsCheckoutLoading(true);
+    setCheckoutError("");
+
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          priceId: VARA_ASSESSMENT_PRICE_ID,
+        }),
+      });
+
+      const result = (await response.json()) as CheckoutResponse;
+
+      if (!response.ok || !result.ok || !result.url) {
+        throw new Error(
+          result.message ||
+            "The assessment checkout could not be started.",
+        );
+      }
+
+      window.location.assign(result.url);
+    } catch (error) {
+      console.error("VARA assessment checkout failed.", error);
+
+      setCheckoutError(
+        error instanceof Error
+          ? error.message
+          : "The assessment checkout could not be started. Please try again.",
+      );
+
+      setIsCheckoutLoading(false);
+    }
+  };
+
   return (
     <div className="vara-page">
       <header className="vara-header">
@@ -31,6 +86,7 @@ export default function VaraAI() {
           <a href="#capabilities">Capabilities</a>
           <a href="#use-cases">Use Cases</a>
           <a href="#how-it-works">How It Works</a>
+          <a href="#assessment">Assessment</a>
           <a href="#demo">Demo</a>
         </nav>
 
@@ -338,10 +394,86 @@ export default function VaraAI() {
           </div>
         </section>
 
+        <section className="vara-assessment-section" id="assessment">
+          <div className="vara-assessment-intro">
+            <p className="vara-kicker">START WITH DISCOVERY</p>
+
+            <h2>
+              VARA AI Discovery &amp; Workflow Assessment
+            </h2>
+
+            <p>
+              A focused engagement for organisations that want to identify
+              where AI assistance and automation could create practical value
+              before committing to a larger implementation.
+            </p>
+
+            <p>
+              We examine one important workflow, identify repeated
+              administrative work and define a realistic, human-supervised
+              pilot opportunity.
+            </p>
+          </div>
+
+          <article className="vara-assessment-card">
+            <div className="vara-assessment-card-heading">
+              <div>
+                <span className="vara-assessment-label">
+                  ONE-OFF ASSESSMENT
+                </span>
+
+                <h3>Workflow discovery and pilot scoping</h3>
+              </div>
+
+              <div className="vara-assessment-price">
+                <strong>£495</strong>
+                <span>one-off</span>
+              </div>
+            </div>
+
+            <ul className="vara-assessment-list">
+              <li>Pre-session workflow questionnaire</li>
+              <li>60–90 minute discovery session</li>
+              <li>Mapping of one core operational workflow</li>
+              <li>Automation opportunity and risk review</li>
+              <li>Recommended pilot scope</li>
+              <li>Short written findings and recommendations</li>
+              <li>30-minute findings review</li>
+            </ul>
+
+            <p className="vara-assessment-note">
+              Any implementation or pilot work is scoped separately. Where a
+              suitable pilot is agreed, the assessment fee may be credited
+              toward the qualifying pilot engagement.
+            </p>
+
+            <button
+              className="vara-assessment-button"
+              type="button"
+              onClick={startAssessmentCheckout}
+              disabled={isCheckoutLoading}
+            >
+              {isCheckoutLoading
+                ? "Opening secure checkout…"
+                : "Book the Assessment"}
+            </button>
+
+            {checkoutError && (
+              <p className="vara-checkout-error" role="alert">
+                {checkoutError}
+              </p>
+            )}
+
+            <p className="vara-secure-checkout-note">
+              Secure payment processing provided by Stripe.
+            </p>
+          </article>
+        </section>
+
         <section className="vara-demo-section" id="demo">
           <p className="vara-kicker">SEE VARA IN ACTION</p>
 
-          <h2>Show us the process that consumes your team's time.</h2>
+          <h2>Show us the process that consumes your team&apos;s time.</h2>
 
           <p>
             VARA is currently under active development. We are speaking with

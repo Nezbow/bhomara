@@ -1,9 +1,71 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./NezbowAI.css";
 
 const BHOMARA_LOGO_URL = "/bhomara-logo-transparent.png";
 
+const PRICE_IDS = {
+  starter: "price_1UFJ44CuowHfQrFGtsoAleTh",
+  creator: "price_1UFJ6MCuowHfQrFGKrpfn2ch",
+  pro: "price_1UFJ7iCuowHfQrFGxXYC3VbZ",
+  videoExplorer: "price_1UFJJSCuowHfQrFGmwf3LYGN",
+} as const;
+
+type CheckoutResponse = {
+  ok?: boolean;
+  url?: string;
+  message?: string;
+};
+
 export default function NezbowAI() {
+  const [loadingPriceId, setLoadingPriceId] = useState<string | null>(null);
+  const [checkoutError, setCheckoutError] = useState("");
+
+  async function startCheckout(priceId: string) {
+    if (loadingPriceId) {
+      return;
+    }
+
+    setLoadingPriceId(priceId);
+    setCheckoutError("");
+
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ priceId }),
+      });
+
+      const result = (await response.json()) as CheckoutResponse;
+
+      if (!response.ok || !result.url) {
+        throw new Error(
+          result.message || "Checkout could not be started.",
+        );
+      }
+
+      window.location.assign(result.url);
+    } catch (error) {
+      console.error("NEZBOW checkout could not be started.", error);
+
+      setCheckoutError(
+        error instanceof Error
+          ? error.message
+          : "Checkout could not be started. Please try again.",
+      );
+    } finally {
+      setLoadingPriceId(null);
+    }
+  }
+
+  function checkoutButtonLabel(priceId: string, defaultLabel: string) {
+    return loadingPriceId === priceId
+      ? "Opening secure checkout..."
+      : defaultLabel;
+  }
+
   return (
     <div className="nezbow-page">
       <header className="nezbow-header">
@@ -30,6 +92,7 @@ export default function NezbowAI() {
           <a href="#capabilities">Capabilities</a>
           <a href="#workflow">Artist Workflow</a>
           <a href="#built-for">Built For</a>
+          <a href="#pricing">Pricing</a>
           <a href="#demo">Demo</a>
         </nav>
 
@@ -61,9 +124,9 @@ export default function NezbowAI() {
             </p>
 
             <div className="nezbow-actions">
-              <Link className="nezbow-primary-button" to="/contact">
-                Request a Demo
-              </Link>
+              <a className="nezbow-primary-button" href="#pricing">
+                View Pricing
+              </a>
 
               <a className="nezbow-secondary-button" href="#capabilities">
                 Explore Capabilities
@@ -345,6 +408,168 @@ export default function NezbowAI() {
               </p>
             </div>
           </div>
+        </section>
+
+        <section className="nezbow-pricing-section" id="pricing">
+          <div className="nezbow-section-heading">
+            <p className="nezbow-kicker">NEZBOW PRICING</p>
+
+            <h2>Choose the support that fits your creative journey.</h2>
+
+            <p className="nezbow-pricing-intro">
+              Monthly plans give independent artists access to NEZBOW&apos;s
+              connected marketing tools. Plan allowances and responsible-use
+              limits will be clearly displayed before launch.
+            </p>
+          </div>
+
+          <div className="nezbow-pricing-grid">
+            <article className="nezbow-price-card">
+              <p className="nezbow-price-label">STARTER</p>
+              <h3>NEZBOW AI Starter</h3>
+
+              <div className="nezbow-price">
+                <strong>£19.99</strong>
+                <span>/ month</span>
+              </div>
+
+              <p className="nezbow-price-description">
+                Essential AI-assisted promotion for independent artists
+                beginning to organise and grow their release campaigns.
+              </p>
+
+              <ul>
+                <li>Release campaign workspace</li>
+                <li>AI-assisted captions and messaging</li>
+                <li>Hashtag and promotional support</li>
+                <li>Core campaign planning tools</li>
+              </ul>
+
+              <button
+                type="button"
+                className="nezbow-checkout-button"
+                disabled={loadingPriceId !== null}
+                onClick={() => startCheckout(PRICE_IDS.starter)}
+              >
+                {checkoutButtonLabel(
+                  PRICE_IDS.starter,
+                  "Choose Starter",
+                )}
+              </button>
+            </article>
+
+            <article className="nezbow-price-card nezbow-price-card-featured">
+              <span className="nezbow-popular-badge">MOST POPULAR</span>
+              <p className="nezbow-price-label">CREATOR</p>
+              <h3>NEZBOW AI Creator</h3>
+
+              <div className="nezbow-price">
+                <strong>£39.99</strong>
+                <span>/ month</span>
+              </div>
+
+              <p className="nezbow-price-description">
+                Expanded creative and campaign support for artists promoting
+                releases consistently across multiple channels.
+              </p>
+
+              <ul>
+                <li>Everything in Starter</li>
+                <li>Expanded campaign capacity</li>
+                <li>Additional creative asset support</li>
+                <li>Broader publishing workflows</li>
+              </ul>
+
+              <button
+                type="button"
+                className="nezbow-checkout-button"
+                disabled={loadingPriceId !== null}
+                onClick={() => startCheckout(PRICE_IDS.creator)}
+              >
+                {checkoutButtonLabel(
+                  PRICE_IDS.creator,
+                  "Choose Creator",
+                )}
+              </button>
+            </article>
+
+            <article className="nezbow-price-card">
+              <p className="nezbow-price-label">PRO</p>
+              <h3>NEZBOW AI Pro</h3>
+
+              <div className="nezbow-price">
+                <strong>£79.99</strong>
+                <span>/ month</span>
+              </div>
+
+              <p className="nezbow-price-description">
+                Higher-capacity marketing intelligence for established
+                independent artists and small artist teams.
+              </p>
+
+              <ul>
+                <li>Everything in Creator</li>
+                <li>Higher campaign capacity</li>
+                <li>Advanced growth intelligence</li>
+                <li>Team-oriented promotional workflows</li>
+              </ul>
+
+              <button
+                type="button"
+                className="nezbow-checkout-button"
+                disabled={loadingPriceId !== null}
+                onClick={() => startCheckout(PRICE_IDS.pro)}
+              >
+                {checkoutButtonLabel(PRICE_IDS.pro, "Choose Pro")}
+              </button>
+            </article>
+
+            <article className="nezbow-price-card nezbow-video-price-card">
+              <p className="nezbow-price-label">VIDEO INTELLIGENCE</p>
+              <h3>NEZBOW Video Intelligence Explorer</h3>
+
+              <div className="nezbow-price">
+                <strong>£19.99</strong>
+                <span>/ month</span>
+              </div>
+
+              <p className="nezbow-price-description">
+                A focused video-intelligence product for analysing successful
+                content patterns and building short-form publishing workflows.
+              </p>
+
+              <ul>
+                <li>High-performing video pattern analysis</li>
+                <li>Hook, caption and tag intelligence</li>
+                <li>Short-form creation from authorised source videos</li>
+                <li>Scheduling workflows for connected platforms</li>
+              </ul>
+
+              <button
+                type="button"
+                className="nezbow-checkout-button"
+                disabled={loadingPriceId !== null}
+                onClick={() => startCheckout(PRICE_IDS.videoExplorer)}
+              >
+                {checkoutButtonLabel(
+                  PRICE_IDS.videoExplorer,
+                  "Choose Video Explorer",
+                )}
+              </button>
+            </article>
+          </div>
+
+          <p className="nezbow-pricing-note">
+            Secure checkout is provided by Stripe. Subscriptions renew monthly
+            until cancelled. NEZBOW Video Intelligence Explorer is available
+            as a separate subscription.
+          </p>
+
+          {checkoutError ? (
+            <p className="nezbow-checkout-error" role="alert" aria-live="polite">
+              {checkoutError}
+            </p>
+          ) : null}
         </section>
 
         <section className="nezbow-demo-section" id="demo">
