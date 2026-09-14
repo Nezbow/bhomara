@@ -86,13 +86,18 @@ export default function VaraAI() {
           <a href="#capabilities">Capabilities</a>
           <a href="#use-cases">Use Cases</a>
           <a href="#how-it-works">How It Works</a>
-          <a href="#assessment">Assessment</a>
           <a href="#demo">Demo</a>
         </nav>
 
-        <Link className="vara-back-link" to="/">
-          BHOMARA Home
-        </Link>
+        <div className="vara-header-actions">
+          <a className="vara-book-link" href="#assessment">
+            Book Assessment
+          </a>
+
+          <Link className="vara-back-link" to="/">
+            BHOMARA Home
+          </Link>
+        </div>
       </header>
 
       <main>
