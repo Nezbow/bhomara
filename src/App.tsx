@@ -248,6 +248,35 @@ function App() {
             discover where practical AI could make a difference.
           </p>
 
+          <div
+            className="contact-details"
+            aria-label="BHOMARA contact details"
+          >
+            <p>
+              <strong>BHOMARA</strong>
+              <br />
+              128 City Road
+              <br />
+              London
+              <br />
+              EC1V 2NX
+              <br />
+              United Kingdom
+            </p>
+
+            <p>
+              Phone:{" "}
+              <a href="tel:+447931428221">
+                +44 7931 428221
+              </a>
+              <br />
+              Email:{" "}
+              <a href="mailto:hello@bhomara.com">
+                hello@bhomara.com
+              </a>
+            </p>
+          </div>
+
           <Link className="primary-button" to="/contact">
             Request a Demo
           </Link>
@@ -262,6 +291,33 @@ function App() {
         <p>
           Practical intelligence for the way people work and create.
         </p>
+
+        <div
+          className="footer-contact"
+          aria-label="BHOMARA business address"
+        >
+          <p>
+            <strong>BHOMARA</strong>
+            <br />
+            128 City Road
+            <br />
+            London EC1V 2NX
+            <br />
+            United Kingdom
+          </p>
+
+          <p>
+            Phone:{" "}
+            <a href="tel:+447931428221">
+              +44 7931 428221
+            </a>
+            <br />
+            Email:{" "}
+            <a href="mailto:hello@bhomara.com">
+              hello@bhomara.com
+            </a>
+          </p>
+        </div>
 
         <div className="footer-links">
           <a href="#products">Products</a>
